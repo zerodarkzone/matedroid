@@ -148,6 +148,9 @@ dependencies {
     // DataStore
     implementation(libs.datastore.preferences)
 
+    // Security (encrypted credential storage via Android Keystore)
+    implementation(libs.security.crypto)
+
     // Room
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)

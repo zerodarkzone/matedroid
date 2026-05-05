@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - **Custom HTTP headers**: A new "Custom HTTP Headers" section in Advanced Network Settings lets you define arbitrary key-value header pairs that are sent with every API request. Useful for authenticating through reverse proxies or gateways that require headers like `X-API-Key` or `CF-Access-Client-Id`.
 
+### Security
+- **Encrypted credential storage**: API token, Basic Auth username/password, and custom header values are now stored in `EncryptedSharedPreferences` backed by the Android Keystore hardware enclave, instead of plain DataStore. Existing credentials are migrated automatically and silently on the first launch after update.
+
 ## [1.7.0] - 2026-04-30
 
 Complete visual refresh of the **drives and charges lists**, plus a new fast-scroll bar and several smaller fixes.
