@@ -29,3 +29,8 @@
 -dontwarn okhttp3.**
 -dontwarn okio.**
 -keep class okhttp3.** { *; }
+
+# Error Prone annotations are compile-time only and not present at runtime.
+# Tink (used by androidx.security:security-crypto) references them, so suppress
+# the R8 missing-class warnings.
+-dontwarn com.google.errorprone.annotations.**
