@@ -98,7 +98,7 @@
     <string name="view_stats">Veure estadístiques</string>
 
     <!-- Content description for battery icon, indicates it's tappable -->
-    <string name="tap_for_battery_health">Toca per estat de la bateria</string>
+    <string name="tap_for_battery_health">Toca per salut de la bateria</string>
 
     <!-- Battery charge limit label. %d is the percentage (e.g., "Limit: 80%") -->
     <string name="charge_limit_format">Límit: %d%%</string>
@@ -226,6 +226,8 @@
     <string name="settings_section_notifications_summary">Alertes de càrrega, Sentinella i pneumàtics</string>
     <string name="settings_section_data">Dades i sincronització</string>
     <string name="settings_section_data_summary">Manteniment de les dades desades</string>
+    <string name="settings_section_backup">Còpia de seguretat</string>
+    <string name="settings_section_backup_summary">Desa una còpia dels teus viatges i la configuració</string>
     <string name="settings_section_about">Quant a</string>
     <string name="settings_section_about_summary">Versió i suport</string>
     <string name="settings_section_debug">Eines de depuració</string>
@@ -297,7 +299,7 @@
     <string name="settings_connect_description">Introdueix l\'URL del teu servidor TeslamateApi per connectar.</string>
 
     <string name="settings_demo_title">No tens cap servidor?</string>
-    <string name="settings_demo_description">Explora MateDroid amb un any de dades d\'exemple d\'un cotxe de demostració. Podràs connectar el teu TeslaMate més endavant.</string>
+    <string name="settings_demo_description">Un any de dades d\'exemple d\'un cotxe de demostració.</string>
     <string name="settings_demo_action">Prova la demo</string>
 
     <string name="settings_demo_active_title">Mode demo</string>
@@ -615,70 +617,50 @@
 
     <!-- ==================== Battery Screen ==================== -->
     <!-- Top bar title -->
-    <string name="battery_health_title">Estat de la Bateria</string>
+    <string name="battery_health_title">Salut de la Bateria</string>
 
     <!-- Empty state -->
     <string name="no_battery_data">No hi ha dades de bateria disponibles</string>
 
-    <!-- Capacity section -->
-    <string name="capacity">Capacitat</string>
-    <string name="usable_new">Utilitzable (nova)</string>
-    <string name="usable_now">Utilitzable (ara)</string>
-    <string name="rated">Nominal</string>
+    <!-- Hero caption above the estimated health percentage -->
+    <string name="battery_health_estimated">Salut estimada de la bateria</string>
+    <!-- Caption under the health percentage printed inside the battery pictogram's fill. Shown
+         uppercased in a narrow area: keep it short (the dialog title uses battery_health_estimated). -->
+    <string name="battery_cell_health_caption">Salut estimada</string>
+    <!-- Short uppercase labels under the health figure and on the range tiles: usable capacity
+         (kWh) now, the same figure when the car was new, and what was lost since. "When new" and
+         "Lost" are reused for both kWh and range; the unit next to the value disambiguates. -->
+    <string name="battery_usable_now">Utilitzable ara</string>
+    <string name="battery_when_new">Original</string>
+    <string name="battery_lost">Perdut</string>
+    <!-- Footer label: consumption (Wh/km or Wh/mi) Tesla uses to convert kWh into rated range -->
+    <string name="battery_rated_efficiency">Eficiència nominal</string>
+    <!-- Range tile label: rated range at 100% today -->
+    <string name="battery_range_now">Autonomia ara</string>
+    <!-- Card title for the current charge level and range estimates -->
+    <string name="battery_right_now">Ara mateix</string>
+    <!-- Short key at the foot of the range column (left of the pictogram): the figures there are
+         range at a 100 % charge. Shown uppercased, up to two lines. -->
+    <string name="battery_key_range_at_100">Autonomia al 100 %</string>
+    <!-- Short key at the foot of the energy column (right of the pictogram): the figures there are
+         usable capacity in kWh. Shown uppercased, up to two lines. -->
+    <string name="battery_key_capacity_usable">Capacitat utilitzable</string>
 
-    <!-- Capacity info dialog -->
-    <string name="battery_capacity_title">Capacitat de la Bateria</string>
-    <string name="battery_capacity_message">Mostra la capacitat d\'emmagatzematge energètic de la bateria.\n\n• Utilitzable (nova): La capacitat utilitzable original quan el cotxe era nou\n• Utilitzable (ara): Capacitat utilitzable actual després de la degradació\n• Eficiència nominal: Consum energètic per km en condicions de prova estàndard (Wh/km)</string>
+    <!-- Battery health info dialog (its title is battery_health_estimated) -->
+    <string name="estimated_degradation_message">Teslamate estima la salut de la bateria a partir de les dades de càrrega.\n\n• Salut: capacitat utilitzable actual dividida per la capacitat utilitzable original\n• Perdut: la diferència entre totes dues, en kWh, en autonomia nominal i com a part de la capacitat original\n• Eficiència nominal: el consum que Tesla fa servir per convertir els kWh en autonomia nominal\n\nNota: Tesla no publica cap dada oficial de degradació, així que això és una estimació.</string>
 
-    <!-- Degradation section -->
-    <string name="estimated_degradation">Degradació estimada</string>
-    <string name="loss_kwh">Pèrdua (kWh)</string>
-    <string name="loss_percent">Pèrdua (%)</string>
-
-    <!-- Degradation info dialog -->
-    <string name="estimated_degradation_title">Degradació Estimada</string>
-    <string name="estimated_degradation_message">La degradació de la bateria s\'estima basant-se en dades de Teslamate.\n\n• Capacitat (%): Salut restant de la bateria comparada amb nova\n• Pèrdua (kWh): Capacitat energètica perduda per degradació\n• Pèrdua (%): Percentatge de la capacitat original perduda\n\nNota: Això és una estimació. Tesla no proporciona dades oficials de degradació.</string>
-
-    <!-- Range section -->
-    <string name="range">Autonomia</string>
-    <string name="max_range_new">Autonomia màx (nova)</string>
-    <string name="max_range_now">Autonomia màx (ara)</string>
-    <string name="range_loss">Pèrdua d\'autonomia</string>
-
-    <!-- Battery detail screen -->
-    <string name="battery_detail_title">Detall de la Bateria</string>
-
-    <!-- Current charge section -->
-    <string name="current_charge">Càrrega Actual</string>
-    <!-- %d is the percentage of usable battery -->
-    <string name="usable_percent">Utilitzable: %d%%</string>
-
-    <!-- Current charge info dialog -->
+    <!-- Current charge screen title -->
     <string name="current_charge_title">Càrrega Actual</string>
-    <string name="current_charge_message">Mostra l\'estat de càrrega actual de la bateria.\n • Bateria (%): El nivell de càrrega mostrat al tauler\n • Utilitzable (%): Càrrega realment utilitzable (Tesla reserva un petit búfer per protecció)\n \n Aquesta és la càrrega actual, no la salut a llarg termini de la bateria.</string>
 
-    <!-- Range information section -->
-    <string name="range_information">Informació d\'Autonomia</string>
-    <string name="estimated_range">Autonomia Estimada</string>
-    <string name="estimated_range_subtitle">Basada en les condicions de conducció actuals</string>
-    <string name="rated_range">Autonomia Nominal</string>
-    <string name="rated_range_subtitle">Autonomia oficial EPA/WLTP</string>
-    <string name="ideal_range">Autonomia Ideal</string>
-    <string name="ideal_range_subtitle">Condicions de conducció ideals</string>
+    <!-- Short uppercase labels over the three range figures in the "Right now" card (a third of
+         the card width each; the km/mi unit and the card make "range" implicit) -->
+    <string name="battery_range_estimated_short">Estimada</string>
+    <string name="battery_range_rated_short">Nominal</string>
+    <string name="battery_range_ideal_short">Ideal</string>
 
     <!-- Range information info dialog -->
     <string name="range_information_title">Informació d\'Autonomia</string>
     <string name="range_information_message">Diferents maneres d\'estimar quant pots conduir.\n\n• Autonomia Estimada: Basada en la teva eficiència de conducció recent i condicions actuals\n• Autonomia Nominal: Autonomia oficial de proves EPA/WLTP (la que anuncia Tesla)\n• Autonomia Ideal: Autonomia teòrica màxima en condicions perfectes (sense climatització, carretera plana, velocitat moderada)</string>
-
-    <!-- Estimated total capacity section -->
-    <string name="estimated_total_capacity">Capacitat Total Estimada</string>
-    <string name="range_at_100">Autonomia al 100%</string>
-    <!-- %1$d is the current battery percentage, %2$.1f is the rated range in km -->
-    <string name="estimated_range_description">Estimació basada en el %1$d%% actual i autonomia nominal de %2$.1f km</string>
-
-    <!-- Estimated total capacity info dialog. %d is the current battery percentage -->
-    <string name="estimated_total_capacity_title">Capacitat Total Estimada</string>
-    <string name="estimated_total_capacity_message">Projecta la teva autonomia màxima si es carrega al 100%%.\n\nCalculada extrapolant la teva autonomia nominal actual al %d%% a una càrrega completa.\n\nAixò t\'ajuda a entendre la capacitat actual de la bateria sense necessitat de carregar al 100%% (cosa no recomanada per a ús diari).</string>
 
     <!-- Common dialog button -->
     <string name="got_it">Entès</string>
@@ -723,11 +705,8 @@
     <!-- Geocode progress status. %1$d is processed count, %2$d is total count -->
     <string name="geocode_progress_status">%1$d de %2$d ubicacions</string>
 
-    <!-- Section: Drives Overview - summary statistics about all drives -->
-    <string name="stats_drives_overview">Resum de Trajectes</string>
-
-    <!-- Label for total number of drives -->
-    <string name="stats_total_drives">Trajectes Totals</string>
+    <!-- Title of the summary card with totals and averages over all drives (the act of driving, not a single drive) -->
+    <string name="stats_driving_summary">Conducció</string>
 
     <!-- Label for number of days with at least one drive -->
     <string name="stats_driving_days">Dies de Conducció</string>
@@ -743,18 +722,18 @@
     <!-- Label for average cost per 100 km. %1$s is the distance unit (km or mi) -->
     <string name="stats_cost_per_distance">Cost / 100 %1$s</string>
 
-    <!-- Section: Charges Overview - summary statistics about all charges -->
-    <string name="stats_charges_overview">Resum de Càrregues</string>
-
-    <!-- Label for total number of charge sessions -->
-    <string name="stats_total_charges">Càrregues Totals</string>
+    <!-- Title of the summary card with totals over all charges, including the AC/DC split (the act of charging) -->
+    <string name="stats_charging_summary">Càrrega</string>
 
     <!-- Label for average cost per kWh of energy -->
     <string name="stats_avg_cost_kwh_added">Cost Mitjà/kWh afegit</string>
     <string name="stats_avg_cost_kwh_used">Cost Mitjà/kWh usat</string>
 
-    <!-- Section: Records - personal bests and extremes -->
-    <string name="stats_records">Rècords</string>
+    <!-- Count of records (trophies) on one category shelf of Stats for Nerds, shown in caps next to the shelf title. %d is the count -->
+    <plurals name="stats_trophies_count">
+        <item quantity="one">%d trofeu</item>
+        <item quantity="other">%d trofeus</item>
+    </plurals>
 
     <!-- Record category: driving-related records -->
     <string name="stats_category_drives">Trajectes</string>
@@ -823,6 +802,12 @@
     <!-- Record: charge session with lowest outside temperature -->
     <string name="record_coldest_charge">Càrrega més freda</string>
 
+    <!-- Record: highest cabin (interior) temperature measured while driving -->
+    <string name="record_hottest_cabin">Habitacle més calent</string>
+
+    <!-- Record: lowest cabin (interior) temperature measured while driving -->
+    <string name="record_coldest_cabin">Habitacle més fred</string>
+
     <!-- Record: longest distance traveled between two charges -->
     <string name="record_longest_range">Autonomia màx</string>
 
@@ -838,35 +823,20 @@
     <!-- Format for streak duration. %d is number of days -->
     <string name="format_days">%.1f dies</string>
 
-    <!-- Format for number of drives. %d is the count -->
-    <string name="format_drives_count">%d trajectes</string>
+    <!-- Unit shown under a record's big number of days (e.g. "12" over "days"). Lowercase, no number -->
+    <string name="record_unit_days">dies</string>
 
-    <!-- Section: Temperature extremes recorded while driving and charging -->
-    <string name="stats_temperature_extremes">Temperatures Extremes</string>
+    <!-- Unit shown under a record's big number of drives (e.g. "9" over "drives"). Lowercase, no number -->
+    <string name="record_unit_drives">trajectes</string>
 
-    <!-- Sub-section: temperatures recorded while driving -->
-    <string name="stats_while_driving">Durant la Conducció</string>
+    <!-- Unit shown under the big number of countries visited (e.g. "4" over "countries"). No number in the text -->
+    <plurals name="record_unit_countries">
+        <item quantity="one">país</item>
+        <item quantity="other">països</item>
+    </plurals>
 
-    <!-- Label for highest temperature -->
-    <string name="stats_hottest">Més calent</string>
-
-    <!-- Label for lowest temperature -->
-    <string name="stats_coldest">Més fred</string>
-
-    <!-- Sub-section: cabin (interior) temperatures -->
-    <string name="stats_cabin_temperature">Temperatura de l\'Habitacle</string>
-
-    <!-- Section: ratio between AC and DC charging -->
-    <string name="stats_ac_dc_ratio">Ràtio AC/DC</string>
-
-    <!-- Label for energy charged via AC -->
-    <string name="stats_ac_energy">Energia AC</string>
-
-    <!-- Label for energy charged via DC -->
-    <string name="stats_dc_energy">Energia DC</string>
-
-    <!-- Format for number of charge sessions. %d is the count -->
-    <string name="format_charges_count">%d càrregues</string>
+    <!-- Format for number of charge sessions. %,d is the count with thousands separator -->
+    <string name="format_charges_count">%,d càrregues</string>
 
     <!-- Debug dialog title for viewing sync logs -->
     <string name="stats_sync_logs_title">Registres de Sincronització</string>
@@ -898,12 +868,6 @@
     <!-- ==================== Countries Visited Screen ==================== -->
     <!-- Top bar title for countries visited screen -->
     <string name="countries_visited_title">Països Visitats</string>
-
-    <!-- Plural for number of countries. %d is the count -->
-    <plurals name="format_countries_count">
-        <item quantity="one">%d país</item>
-        <item quantity="other">%d països</item>
-    </plurals>
 
     <!-- Label showing first visit date. %s is the formatted date -->
     <string name="country_first_visit">Primera visita: %s</string>
@@ -1463,4 +1427,64 @@
     </plurals>
     <!-- Placeholder when a stat has no value -->
     <string name="value_not_available">N/D</string>
+
+    <string name="backup_intro">Els viatges desats, els avisos de Sentinella i la configuració només existeixen en aquest telèfon. MateDroid et dona el fitxer: on va a parar ho decideixes tu.</string>
+    <string name="backup_export_header">Desa una còpia</string>
+    <string name="backup_export_always">Els viatges i la configuració hi van sempre.</string>
+    <string name="backup_export_no_secrets">El token API i la contrasenya no s\'inclouen mai.</string>
+    <string name="backup_export_button">Desa i comparteix</string>
+    <string name="backup_export_preparing">S\'està preparant…</string>
+    <string name="backup_section_trips">Viatges desats</string>
+    <string name="backup_section_settings">Configuració</string>
+    <string name="backup_section_sentry">Avisos de Sentinella</string>
+    <string name="backup_section_sentry_hint">Teslamate no en guarda cap registre.</string>
+    <string name="backup_section_places">Noms dels llocs</string>
+    <string name="backup_section_places_hint">Tornar a buscar-los tots triga hores.</string>
+    <string name="backup_section_trip_maps">Mapes dels viatges</string>
+    <string name="backup_section_trip_maps_hint">Es poden tornar a baixar. El fitxer es fa molt més gran.</string>
+    <string name="backup_section_stats">Trajectes i càrregues</string>
+    <string name="backup_section_stats_hint">Estalvia una baixada llarga. El fitxer es fa molt més gran.</string>
+    <string name="backup_import_header">Restaura una còpia</string>
+    <string name="backup_import_hint">Veuràs què hi ha a dins abans que canviï res.</string>
+    <string name="backup_import_button">Tria un fitxer</string>
+    <string name="backup_import_reading">S\'està llegint…</string>
+    <string name="backup_preview_title">Què hi ha a dins</string>
+    <string name="backup_preview_saved_on">Desada el %1$s</string>
+    <string name="backup_preview_saved_on_version">Desada el %1$s per MateDroid %2$s</string>
+    <string name="backup_preview_stats_unusable">Desats per una altra versió de MateDroid: l\'aplicació els tornarà a baixar.</string>
+    <string name="backup_preview_mode">I el que ja hi ha al telèfon?</string>
+    <string name="backup_preview_mode_merge">Conserva-ho i afegeix el que falti</string>
+    <string name="backup_preview_mode_replace">Substitueix-ho pel fitxer</string>
+    <string name="backup_preview_restore">Restaura</string>
+    <string name="backup_preview_restoring">S\'està restaurant…</string>
+    <string name="backup_result_title">Restaurat</string>
+    <string name="backup_result_already_here">Ja hi eren</string>
+    <string name="backup_result_trips_incomplete">Viatges als quals falta un trajecte</string>
+    <string name="backup_result_trips_unmatched">Viatges que no s\'han pogut aparellar</string>
+    <string name="backup_result_restored">Restaurada</string>
+    <string name="backup_result_nothing">Res de nou per restaurar.</string>
+    <string name="backup_result_note_unmatched">Aquests trajectes encara no són en aquest telèfon; la propera sincronització els pot portar.</string>
+    <string name="backup_result_note_token">Torna a escriure el token API a Connexió: una còpia no el conté mai.</string>
+    <string name="backup_error_export">No s\'ha pogut crear la còpia de seguretat.</string>
+    <string name="backup_error_not_a_backup">Aquest fitxer no és una còpia de seguretat de MateDroid.</string>
+    <string name="backup_error_too_new">Aquesta còpia necessita un MateDroid més recent. Actualitza l\'aplicació i torna-ho a provar.</string>
+    <string name="backup_error_restore">Alguna cosa ha anat malament. És possible que una part ja s\'hagi restaurat.</string>
+
+    <string name="backup_cars_header">Cotxes</string>
+    <string name="backup_cars_hint">Només hi entren els cotxes marcats.</string>
+    <string name="backup_car_unnamed">Cotxe %1$d</string>
+    <string name="backup_car_no_vin">Sense VIN registrat</string>
+
+    <string name="backup_restore_entry_title">Restaura una còpia de seguretat</string>
+    <string name="backup_restore_entry_hint">Viatges, avisos de Sentinella i configuració d\'un altre telèfon.</string>
+    <string name="backup_onboarding_intro">Tria el fitxer del telèfon antic. Ho torna tot menys el token API.</string>
+
+    <string name="sync_notification_starting">S\'està iniciant…</string>
+    <string name="sync_notification_car">Cotxe %1$d de %2$d</string>
+    <string name="sync_notification_summaries">S\'està obtenint la llista de trajectes i càrregues</string>
+    <string name="sync_notification_drives">Trajectes: %1$d de %2$d</string>
+    <string name="sync_notification_charges">Càrregues: %1$d de %2$d</string>
+
+    <string name="trips_awaiting_title">Esperant els trajectes</string>
+    <string name="trips_awaiting_body">Els viatges hi són, però els trajectes que els formen encara s\'estan baixant. Aniran apareixent a mesura que avanci la sincronització.</string>
 </resources>

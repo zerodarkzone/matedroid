@@ -13,6 +13,7 @@ import com.matedroid.data.api.models.GlobalSettingsData
 import com.matedroid.data.api.models.Units
 import com.matedroid.data.api.models.UpdateData
 import com.matedroid.data.local.AppSettings
+import com.matedroid.data.local.KnownCar
 import com.matedroid.data.local.SettingsDataStore
 import com.matedroid.di.TeslamateApiFactory
 import com.matedroid.domain.UnitSystem
@@ -35,7 +36,11 @@ sealed class ApiResult<out T> {
     data class Error(
         val message: String,
         val code: Int? = null,
-        val details: String? = null
+        val details: String? = null,
+        // The server answered successfully but had nothing for this resource (TeslamateApi
+        // replies HTTP 200 {"error":"No rows were returned!"}, e.g. a drive without positions).
+        // Retrying won't change that, unlike a network or HTTP error.
+        val noData: Boolean = false
     ) : ApiResult<Nothing>()
 }
 
@@ -296,13 +301,23 @@ class TeslamateRepository @Inject constructor(
     ): ApiResult<T> =
         if (isSuccessful) {
             extract(body())?.let { ApiResult.Success(it) }
-                ?: ApiResult.Error("No $what returned")
+                ?: ApiResult.Error("No $what returned", noData = true)
         } else {
             ApiResult.Error("Failed to fetch $what: ${code()}", code())
         }
 
     suspend fun getCars(): ApiResult<List<CarData>> =
         executeWithFallback { api -> api.getCars().toResult("cars") { it?.data?.cars ?: emptyList() } }
+            .also { result ->
+                // Remember who each car id belongs to while the server is answering. A
+                // backup taken later — on mobile data, away from a LAN-only Teslamate — can
+                // then still name the cars it carries and record the VIN a restore matches on.
+                if (result is ApiResult.Success) {
+                    settingsDataStore.saveKnownCars(
+                        result.data.map { KnownCar(it.carId, it.carDetails?.vin, it.name) }
+                    )
+                }
+            }
 
     suspend fun getCar(carId: Int): ApiResult<CarData> =
         executeWithFallback { api -> api.getCar(carId).toResult("car") { it?.data?.cars?.firstOrNull() } }

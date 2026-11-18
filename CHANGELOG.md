@@ -9,8 +9,54 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - **Custom HTTP headers**: A new "Custom HTTP Headers" section in Advanced Network Settings lets you define arbitrary key-value header pairs that are sent with every API request. Useful for authenticating through reverse proxies or gateways that require headers like `X-API-Key` or `CF-Access-Client-Id`.
+
+### Fixed
+- **Charge details stopped syncing when a drive had no data** — a drive Teslamate keeps without any recorded positions failed to sync every time, and since charges only synced after every drive had, no charge detail came in after that. Charges added since then were shown as AC in trips, and road trips through DC chargers weren't detected. Such drives are now recorded as empty and the charge sync runs regardless, so the backlog catches up on the next sync. Until a charge is synced, the trip screens now guess AC or DC from its average power, the way the charges list already does.
+
+## [1.12.0] - 2026-10-08
+
+Back up what only your phone knows and restore it anywhere, follow a drive to its destination from the notification shade and the dashboard map, and two screens rebuilt around one idea each: Battery Health as a battery cell and Stats for Nerds as a trophy room.
+
+### Added
+- **Backup and restore** — the trips you merged yourself, the sentry alerts and your settings exist nowhere but your phone; Teslamate keeps no record of them. **Settings → Backup** writes them to a file and hands it to the share sheet, so it goes wherever you send it — Drive, a chat, a cable — and MateDroid never keeps a copy. Tick which cars and which parts go in: sentry alerts and saved place names are included by default, trip maps and the full drive history are not. Your API token and server password never go into the file. Restoring shows you what is inside — which cars, by name and VIN, and how much of it belongs to each — before anything changes, and you choose whether to add it to what is already there or replace it. There is a **Restore a backup** button on the first setup screen too, for a phone fresh out of the box.
 - **A notification follows the drive to a destination** — set a destination in the car and a notification appears with the name of the place, how long is left, the time you are due to arrive and the distance and battery level you will arrive with. Expand it for a map showing the car, the destination and the line between them. It updates itself as the car drives and clears when the route ends. It lives on its own **Navigation** notification channel, so it can be silenced from Android's settings without touching the charging, sentry or tyre-pressure notifications.
 - **The dashboard map shows where the car is going** — when a destination is set in the car, a banner across the top of the location card names it and counts down the time left, with the minutes traffic is costing called out in amber next to it. The chips below swap from elevation and coordinates to the distance still to drive, the clock time you are due to arrive, and the battery level you will arrive with. The card goes back to showing only the current position as soon as the route ends.
+
+### Changed
+- **Battery Health is drawn as a battery cell** — one page, one picture: the outline is the pack when new, the fill is what is usable now with the health printed into it, and the hatched sliver on top is what was lost, with its percentage ("−12,0 %"), so the health figure and the loss read as one sum. Capacity and range hang off it on leader lines, each figure shown once; the slide-up detail view is gone. Below it, the Right now card shows the charge level, limit and plug state with the estimated, rated and ideal range. "Health" is now translated as health in every language: Salute, Salud, Salut, Batteriegesundheit, where some screens said "status" before.
+- **The sync notification shows how far it has got** — a progress bar and real numbers ("Drives: 220 of 8,086") instead of one unchanging line, so a first sync that takes hours no longer looks stuck. MateDroid also asks for notification permission when it first opens, rather than waiting for the second launch.
+- **The demo offer on the setup screen is quieter**, and steps aside once there is a server to connect to.
+- **Stats for Nerds is now a trophy room** — three headline cards for your top speed, your biggest day on the road and your biggest charge, an engraved plaque with the driving and charging totals the dashboard doesn't already show (and the AC/DC split of your charging), then every other record on a shelf for its category, each with its real date and the route or place behind it, a tap away from the drive, charge or day. The separate temperature card is gone: the cabin extremes are now records on the Weather shelf.
+
+### Fixed
+- **The rated efficiency on Battery Health was shown ten times too small** (14.7 Wh/km instead of 147).
+
+## [1.12.0-beta3] - 2026-10-05
+
+### Changed
+- **The Battery Health cell shows the share that was lost** — the hatched sliver on top now carries its percentage ("−12,0 %"), so the health figure and the loss read as one sum. Today's charge is no longer drawn inside the cell; it is in the Right now card below. "Health" is now translated as health in every language: Salute, Salud, Salut, Batteriegesundheit, where some screens said "status" before.
+
+## [1.12.0-beta2] - 2026-10-05
+
+### Fixed
+- **The sync notification no longer gets stuck.** A sync that Android ran in the background without a foreground service still posted its progress, and nothing ever took it down again, so a "MateDroid Sync — Charges: 0 of 1" notification sat in the shade for good. It now only appears while a sync is really running, and the leftover one clears itself at the next sync.
+
+## [1.12.0-beta1] - 2026-10-05
+
+### Added
+- **Backup and restore** — the trips you merged yourself, the sentry alerts and your settings exist nowhere but your phone; Teslamate keeps no record of them. **Settings → Backup** writes them to a file and hands it to the share sheet, so it goes wherever you send it — Drive, a chat, a cable — and MateDroid never keeps a copy. Tick which cars and which parts go in: sentry alerts and saved place names are included by default, trip maps and the full drive history are not. Your API token and server password never go into the file. Restoring shows you what is inside — which cars, by name and VIN, and how much of it belongs to each — before anything changes, and you choose whether to add it to what is already there or replace it. There is a **Restore a backup** button on the first setup screen too, for a phone fresh out of the box.
+- **A notification follows the drive to a destination** — set a destination in the car and a notification appears with the name of the place, how long is left, the time you are due to arrive and the distance and battery level you will arrive with. Expand it for a map showing the car, the destination and the line between them. It updates itself as the car drives and clears when the route ends. It lives on its own **Navigation** notification channel, so it can be silenced from Android's settings without touching the charging, sentry or tyre-pressure notifications.
+- **The dashboard map shows where the car is going** — when a destination is set in the car, a banner across the top of the location card names it and counts down the time left, with the minutes traffic is costing called out in amber next to it. The chips below swap from elevation and coordinates to the distance still to drive, the clock time you are due to arrive, and the battery level you will arrive with. The card goes back to showing only the current position as soon as the route ends.
+
+### Changed
+- **Battery Health is drawn as a battery cell** — one page, one picture: the outline is the pack when new, the fill is what is usable now with the health printed into it, the hatched sliver on top is what was lost, and a line inside the fill marks today's charge. Capacity and range hang off it on leader lines, each figure shown once; the slide-up detail view is gone. Below it, the charge level, limit and plug state with the estimated, rated and ideal range. The rated efficiency was also shown ten times too small (14.7 Wh/km instead of 147).
+- **The sync notification shows how far it has got** — a progress bar and real numbers ("Drives: 220 of 8,086") instead of one unchanging line, so a first sync that takes hours no longer looks stuck. MateDroid also asks for notification permission when it first opens, rather than waiting for the second launch.
+- **The demo offer on the setup screen is quieter**, and steps aside once there is a server to connect to.
+- **Stats for Nerds is now a trophy room** — three headline cards for your top speed, your biggest day on the road and your biggest charge, an engraved plaque with the driving and charging totals the dashboard doesn't already show (and the AC/DC split of your charging), then every other record on a shelf for its category, each with its real date and the route or place behind it, a tap away from the drive, charge or day. The separate temperature card is gone: the cabin extremes are now records on the Weather shelf.
+
+### Fixed
+- **The trips list says when it is waiting for drives.** Trips are drawn from the drives they point at, so ones restored from a backup stay invisible until those have downloaded — the list said "no trips" instead of saying so.
+- **Going back after restoring a backup no longer lands on an empty setup screen.**
 
 ## [1.11.3] - 2026-09-19
 
@@ -814,7 +860,11 @@ This release is a top-to-bottom rebuild of the **Trips experience**, plus a hand
 - Dashboard with basic vehicle status
 - Charges screen with history list
 
-[Unreleased]: https://github.com/vide/matedroid/compare/v1.11.3...HEAD
+[Unreleased]: https://github.com/vide/matedroid/compare/v1.12.0...HEAD
+[1.12.0]: https://github.com/vide/matedroid/compare/v1.11.3...v1.12.0
+[1.12.0-beta3]: https://github.com/vide/matedroid/compare/v1.12.0-beta2...v1.12.0-beta3
+[1.12.0-beta2]: https://github.com/vide/matedroid/compare/v1.12.0-beta1...v1.12.0-beta2
+[1.12.0-beta1]: https://github.com/vide/matedroid/compare/v1.11.3...v1.12.0-beta1
 [1.11.3]: https://github.com/vide/matedroid/compare/v1.11.2...v1.11.3
 [1.11.2]: https://github.com/vide/matedroid/compare/v1.11.1...v1.11.2
 [1.11.1]: https://github.com/vide/matedroid/compare/v1.11.0...v1.11.1

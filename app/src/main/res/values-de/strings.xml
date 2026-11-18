@@ -98,7 +98,7 @@
     <string name="view_stats">Statistiken anzeigen</string>
 
     <!-- Content description for battery icon, indicates it's tappable -->
-    <string name="tap_for_battery_health">Tippen für Batteriezustand</string>
+    <string name="tap_for_battery_health">Tippen für Batteriegesundheit</string>
 
     <!-- Battery charge limit label. %d is the percentage (e.g., "Limit: 80%") -->
     <string name="charge_limit_format">Limit: %d%%</string>
@@ -226,6 +226,8 @@
     <string name="settings_section_notifications_summary">Lade-, Sentry- und Reifenwarnungen</string>
     <string name="settings_section_data">Daten &amp; Synchronisierung</string>
     <string name="settings_section_data_summary">Wartung der gespeicherten Daten</string>
+    <string name="settings_section_backup">Backup</string>
+    <string name="settings_section_backup_summary">Eine Kopie deiner Trips und Einstellungen sichern</string>
     <string name="settings_section_about">Über</string>
     <string name="settings_section_about_summary">Version und Support</string>
     <string name="settings_section_debug">Debug-Werkzeuge</string>
@@ -297,7 +299,7 @@
     <string name="settings_connect_description">Gib die URL deines TeslamateApi-Servers ein, um eine Verbindung herzustellen.</string>
 
     <string name="settings_demo_title">Kein Server zur Hand?</string>
-    <string name="settings_demo_description">Sieh dich in MateDroid mit einem Jahr Beispieldaten eines Demofahrzeugs um. Dein eigenes TeslaMate kannst du später verbinden.</string>
+    <string name="settings_demo_description">Ein Jahr Beispieldaten von einem Vorführwagen.</string>
     <string name="settings_demo_action">Demo ausprobieren</string>
 
     <string name="settings_demo_active_title">Demomodus</string>
@@ -616,70 +618,50 @@
 
     <!-- ==================== Battery Screen ==================== -->
     <!-- Top bar title -->
-    <string name="battery_health_title">Batteriezustand</string>
+    <string name="battery_health_title">Batteriegesundheit</string>
 
     <!-- Empty state -->
     <string name="no_battery_data">Keine Batteriedaten verfügbar</string>
 
-    <!-- Capacity section -->
-    <string name="capacity">Kapazität</string>
-    <string name="usable_new">Nutzbar (neu)</string>
-    <string name="usable_now">Nutzbar (jetzt)</string>
-    <string name="rated">Nominal</string>
+    <!-- Hero caption above the estimated health percentage -->
+    <string name="battery_health_estimated">Geschätzte Batteriegesundheit</string>
+    <!-- Caption under the health percentage printed inside the battery pictogram's fill. Shown
+         uppercased in a narrow area: keep it short (the dialog title uses battery_health_estimated). -->
+    <string name="battery_cell_health_caption">Geschätzte Gesundheit</string>
+    <!-- Short uppercase labels under the health figure and on the range tiles: usable capacity
+         (kWh) now, the same figure when the car was new, and what was lost since. "When new" and
+         "Lost" are reused for both kWh and range; the unit next to the value disambiguates. -->
+    <string name="battery_usable_now">Nutzbar jetzt</string>
+    <string name="battery_when_new">Neuzustand</string>
+    <string name="battery_lost">Verlust</string>
+    <!-- Footer label: consumption (Wh/km or Wh/mi) Tesla uses to convert kWh into rated range -->
+    <string name="battery_rated_efficiency">Nennverbrauch</string>
+    <!-- Range tile label: rated range at 100% today -->
+    <string name="battery_range_now">Reichweite jetzt</string>
+    <!-- Card title for the current charge level and range estimates -->
+    <string name="battery_right_now">Aktuell</string>
+    <!-- Short key at the foot of the range column (left of the pictogram): the figures there are
+         range at a 100 % charge. Shown uppercased, up to two lines. -->
+    <string name="battery_key_range_at_100">Reichweite bei 100 %</string>
+    <!-- Short key at the foot of the energy column (right of the pictogram): the figures there are
+         usable capacity in kWh. Shown uppercased, up to two lines. -->
+    <string name="battery_key_capacity_usable">Nutzbare Kapazität</string>
 
-    <!-- Capacity info dialog -->
-    <string name="battery_capacity_title">Batteriekapazität</string>
-    <string name="battery_capacity_message">Zeigt die Energiespeicherkapazität deiner Batterie.\n\n• Nutzbar (neu): Ursprüngliche nutzbare Kapazität, als das Auto neu war\n• Nutzbar (jetzt): Aktuelle nutzbare Kapazität nach Degradation\n• Nominale Effizienz: Energieverbrauch pro km unter Standardtestbedingungen (Wh/km)</string>
+    <!-- Battery health info dialog (its title is battery_health_estimated) -->
+    <string name="estimated_degradation_message">Die Batteriegesundheit wird von Teslamate anhand deiner Ladedaten geschätzt.\n\n• Gesundheit: aktuelle nutzbare Kapazität geteilt durch die nutzbare Kapazität im Neuzustand\n• Verlust: die Differenz zwischen beiden, in kWh, in nominaler Reichweite und als Anteil der Kapazität im Neuzustand\n• Nennverbrauch: der Verbrauch, mit dem Tesla kWh in nominale Reichweite umrechnet\n\nHinweis: Tesla veröffentlicht keinen offiziellen Degradationswert, daher ist dies eine Schätzung.</string>
 
-    <!-- Degradation section -->
-    <string name="estimated_degradation">Geschätzte Degradation</string>
-    <string name="loss_kwh">Verlust (kWh)</string>
-    <string name="loss_percent">Verlust (%)</string>
-
-    <!-- Degradation info dialog -->
-    <string name="estimated_degradation_title">Geschätzte Degradation</string>
-    <string name="estimated_degradation_message">Die Batteriedegradation wird auf Basis von Teslamate-Daten geschätzt.\n\n• Kapazität (%): Verbleibende Batteriegesundheit im Vergleich zu neu\n• Verlust (kWh): Durch Degradation verlorene Energiekapazität\n• Verlust (%): Prozentsatz der ursprünglichen Kapazität, der verloren ging\n\nHinweis: Dies ist eine Schätzung. Tesla stellt keine offiziellen Degradationsdaten bereit.</string>
-
-    <!-- Range section -->
-    <string name="range">Reichweite</string>
-    <string name="max_range_new">Max. Reichweite (neu)</string>
-    <string name="max_range_now">Max. Reichweite (jetzt)</string>
-    <string name="range_loss">Reichweitenverlust</string>
-
-    <!-- Battery detail screen -->
-    <string name="battery_detail_title">Batteriedetails</string>
-
-    <!-- Current charge section -->
-    <string name="current_charge">Aktuelle Ladung</string>
-    <!-- %d is the percentage of usable battery -->
-    <string name="usable_percent">Nutzbar: %d%%</string>
-
-    <!-- Current charge info dialog -->
+    <!-- Current charge screen title -->
     <string name="current_charge_title">Aktuelle Ladung</string>
-    <string name="current_charge_message">Zeigt den aktuellen Ladezustand deiner Batterie.\n\n • Batterie (%): Der auf deinem Armaturenbrett angezeigte Ladestand\n • Nutzbar (%): Tatsächlich nutzbare Ladung (Tesla reserviert eine kleine Reserve zum Schutz der Batterie)\n\nDies ist der aktuelle Ladezustand, nicht die langfristige Gesundheit der Batterie.</string>
 
-    <!-- Range information section -->
-    <string name="range_information">Reichweiteninformationen</string>
-    <string name="estimated_range">Geschätzte Reichweite</string>
-    <string name="estimated_range_subtitle">Basierend auf aktuellen Fahrbedingungen</string>
-    <string name="rated_range">Nominale Reichweite</string>
-    <string name="rated_range_subtitle">Offizielle EPA/WLTP-Reichweite</string>
-    <string name="ideal_range">Ideale Reichweite</string>
-    <string name="ideal_range_subtitle">Ideale Fahrbedingungen</string>
+    <!-- Short uppercase labels over the three range figures in the "Right now" card (a third of
+         the card width each; the km/mi unit and the card make "range" implicit) -->
+    <string name="battery_range_estimated_short">Geschätzt</string>
+    <string name="battery_range_rated_short">Nominal</string>
+    <string name="battery_range_ideal_short">Ideal</string>
 
     <!-- Range information info dialog -->
     <string name="range_information_title">Reichweiteninformationen</string>
     <string name="range_information_message">Verschiedene Wege, abzuschätzen, wie weit du fahren kannst.\n\n• Geschätzte Reichweite: Basierend auf deiner jüngsten Fahr-Effizienz und den aktuellen Bedingungen\n• Nominale Reichweite: Offizielle EPA/WLTP-Testreichweite (die von Tesla beworbene)\n• Ideale Reichweite: Maximale theoretische Reichweite unter perfekten Bedingungen (keine Klima, flache Strecke, moderate Geschwindigkeit)</string>
-
-    <!-- Estimated total capacity section -->
-    <string name="estimated_total_capacity">Geschätzte Gesamtkapazität</string>
-    <string name="range_at_100">Reichweite bei 100 %</string>
-    <!-- %1$d is the current battery percentage, %2$.1f is the rated range in km -->
-    <string name="estimated_range_description">Schätzung basierend auf aktuellen %1$d%% und einer nominalen Reichweite von %2$.1f km</string>
-
-    <!-- Estimated total capacity info dialog. %d is the current battery percentage -->
-    <string name="estimated_total_capacity_title">Geschätzte Gesamtkapazität</string>
-    <string name="estimated_total_capacity_message">Projektion deiner maximalen Reichweite bei 100 % Ladung.\n\nBerechnet durch Hochrechnung deiner aktuellen nominalen Reichweite bei %d%% auf eine Vollladung.\n\nSo kannst du die aktuelle Gesamtkapazität deiner Batterie abschätzen, ohne auf 100 %% laden zu müssen (was für den Alltag nicht empfohlen wird).</string>
 
     <!-- Common dialog button -->
     <string name="got_it">Verstanden</string>
@@ -724,11 +706,8 @@
     <!-- Geocode progress status. %1$d is processed count, %2$d is total count -->
     <string name="geocode_progress_status">%1$d von %2$d Orten</string>
 
-    <!-- Section: Drives Overview - summary statistics about all drives -->
-    <string name="stats_drives_overview">Übersicht Fahrten</string>
-
-    <!-- Label for total number of drives -->
-    <string name="stats_total_drives">Fahrten gesamt</string>
+    <!-- Title of the summary card with totals and averages over all drives (the act of driving, not a single drive) -->
+    <string name="stats_driving_summary">Fahren</string>
 
     <!-- Label for number of days with at least one drive -->
     <string name="stats_driving_days">Tage mit Fahrten</string>
@@ -744,18 +723,18 @@
     <!-- Label for average cost per 100 km. %1$s is the distance unit (km or mi) -->
     <string name="stats_cost_per_distance">Kosten / 100 %1$s</string>
 
-    <!-- Section: Charges Overview - summary statistics about all charges -->
-    <string name="stats_charges_overview">Übersicht Ladevorgänge</string>
-
-    <!-- Label for total number of charge sessions -->
-    <string name="stats_total_charges">Ladevorgänge gesamt</string>
+    <!-- Title of the summary card with totals over all charges, including the AC/DC split (the act of charging) -->
+    <string name="stats_charging_summary">Laden</string>
 
     <!-- Label for average cost per kWh of energy -->
     <string name="stats_avg_cost_kwh_added">Ø-Kosten/kWh hinzugefügt</string>
     <string name="stats_avg_cost_kwh_used">Ø-Kosten/kWh verbraucht</string>
 
-    <!-- Section: Records - personal bests and extremes -->
-    <string name="stats_records">Rekorde</string>
+    <!-- Count of records (trophies) on one category shelf of Stats for Nerds, shown in caps next to the shelf title. %d is the count -->
+    <plurals name="stats_trophies_count">
+        <item quantity="one">%d Trophäe</item>
+        <item quantity="other">%d Trophäen</item>
+    </plurals>
 
     <!-- Record category: driving-related records -->
     <string name="stats_category_drives">Fahrten</string>
@@ -824,6 +803,12 @@
     <!-- Record: charge session with lowest outside temperature -->
     <string name="record_coldest_charge">Kältester Ladevorgang</string>
 
+    <!-- Record: highest cabin (interior) temperature measured while driving -->
+    <string name="record_hottest_cabin">Wärmster Innenraum</string>
+
+    <!-- Record: lowest cabin (interior) temperature measured while driving -->
+    <string name="record_coldest_cabin">Kältester Innenraum</string>
+
     <!-- Record: longest distance traveled between two charges -->
     <string name="record_longest_range">Längste Strecke zwischen Ladungen</string>
 
@@ -839,35 +824,20 @@
     <!-- Format for streak duration. %d is number of days -->
     <string name="format_days">%.1f Tage</string>
 
-    <!-- Format for number of drives. %d is the count -->
-    <string name="format_drives_count">%d Fahrten</string>
+    <!-- Unit shown under a record's big number of days (e.g. "12" over "days"). Lowercase, no number -->
+    <string name="record_unit_days">Tage</string>
 
-    <!-- Section: Temperature extremes recorded while driving and charging -->
-    <string name="stats_temperature_extremes">Temperaturextreme</string>
+    <!-- Unit shown under a record's big number of drives (e.g. "9" over "drives"). Lowercase, no number -->
+    <string name="record_unit_drives">Fahrten</string>
 
-    <!-- Sub-section: temperatures recorded while driving -->
-    <string name="stats_while_driving">Während der Fahrt</string>
+    <!-- Unit shown under the big number of countries visited (e.g. "4" over "countries"). No number in the text -->
+    <plurals name="record_unit_countries">
+        <item quantity="one">Land</item>
+        <item quantity="other">Länder</item>
+    </plurals>
 
-    <!-- Label for highest temperature -->
-    <string name="stats_hottest">Wärmste</string>
-
-    <!-- Label for lowest temperature -->
-    <string name="stats_coldest">Kälteste</string>
-
-    <!-- Sub-section: cabin (interior) temperatures -->
-    <string name="stats_cabin_temperature">Innenraumtemperatur</string>
-
-    <!-- Section: ratio between AC and DC charging -->
-    <string name="stats_ac_dc_ratio">Verhältnis AC/DC-Ladung</string>
-
-    <!-- Label for energy charged via AC -->
-    <string name="stats_ac_energy">AC-Energie</string>
-
-    <!-- Label for energy charged via DC -->
-    <string name="stats_dc_energy">DC-Energie</string>
-
-    <!-- Format for number of charge sessions. %d is the count -->
-    <string name="format_charges_count">%d Ladevorgänge</string>
+    <!-- Format for number of charge sessions. %,d is the count with thousands separator -->
+    <string name="format_charges_count">%,d Ladevorgänge</string>
 
     <!-- Debug dialog title for viewing sync logs -->
     <string name="stats_sync_logs_title">Synchronisierungsprotokolle</string>
@@ -899,12 +869,6 @@
     <!-- ==================== Countries Visited Screen ==================== -->
     <!-- Top bar title for countries visited screen -->
     <string name="countries_visited_title">Besuchte Länder</string>
-
-    <!-- Plural for number of countries. %d is the count -->
-    <plurals name="format_countries_count">
-        <item quantity="one">%d Land</item>
-        <item quantity="other">%d Länder</item>
-    </plurals>
 
     <!-- Label for first visit date to a country. %s is the formatted date -->
     <string name="country_first_visit">Erster Besuch: %s</string>
@@ -1578,4 +1542,64 @@
     </plurals>
     <!-- Placeholder when a stat has no value -->
     <string name="value_not_available">k. A.</string>
+
+    <string name="backup_intro">Deine gespeicherten Trips, Sentry-Warnungen und Einstellungen gibt es nur auf diesem Telefon. MateDroid gibt dir die Datei — wohin sie geht, entscheidest du.</string>
+    <string name="backup_export_header">Kopie sichern</string>
+    <string name="backup_export_always">Trips und Einstellungen sind immer dabei.</string>
+    <string name="backup_export_no_secrets">Dein API-Token und dein Passwort sind nie dabei.</string>
+    <string name="backup_export_button">Sichern und teilen</string>
+    <string name="backup_export_preparing">Wird vorbereitet…</string>
+    <string name="backup_section_trips">Gespeicherte Trips</string>
+    <string name="backup_section_settings">Einstellungen</string>
+    <string name="backup_section_sentry">Sentry-Warnungen</string>
+    <string name="backup_section_sentry_hint">Teslamate führt darüber kein Protokoll.</string>
+    <string name="backup_section_places">Ortsnamen</string>
+    <string name="backup_section_places_hint">Sie alle erneut nachzuschlagen dauert Stunden.</string>
+    <string name="backup_section_trip_maps">Trip-Karten</string>
+    <string name="backup_section_trip_maps_hint">Lassen sich erneut laden. Macht die Datei viel größer.</string>
+    <string name="backup_section_stats">Fahrten und Ladevorgänge</string>
+    <string name="backup_section_stats_hint">Spart später einen langen Download. Macht die Datei viel größer.</string>
+    <string name="backup_import_header">Eine Kopie zurückholen</string>
+    <string name="backup_import_hint">Du siehst, was darin steckt, bevor sich etwas ändert.</string>
+    <string name="backup_import_button">Datei auswählen</string>
+    <string name="backup_import_reading">Wird gelesen…</string>
+    <string name="backup_preview_title">Was darin steckt</string>
+    <string name="backup_preview_saved_on">Gesichert am %1$s</string>
+    <string name="backup_preview_saved_on_version">Gesichert am %1$s mit MateDroid %2$s</string>
+    <string name="backup_preview_stats_unusable">Von einer anderen MateDroid-Version gesichert — die App lädt sie erneut.</string>
+    <string name="backup_preview_mode">Und was schon auf dem Telefon ist?</string>
+    <string name="backup_preview_mode_merge">Behalten, Fehlendes ergänzen</string>
+    <string name="backup_preview_mode_replace">Durch die Datei ersetzen</string>
+    <string name="backup_preview_restore">Zurückholen</string>
+    <string name="backup_preview_restoring">Wird zurückgeholt…</string>
+    <string name="backup_result_title">Zurückgeholt</string>
+    <string name="backup_result_already_here">Schon vorhanden</string>
+    <string name="backup_result_trips_incomplete">Trips, denen eine Fahrt fehlt</string>
+    <string name="backup_result_trips_unmatched">Trips ohne Zuordnung</string>
+    <string name="backup_result_restored">Zurückgeholt</string>
+    <string name="backup_result_nothing">Nichts Neues zurückzuholen.</string>
+    <string name="backup_result_note_unmatched">Diese Fahrten sind noch nicht auf dem Telefon — die nächste Synchronisierung bringt sie vielleicht.</string>
+    <string name="backup_result_note_token">Gib dein API-Token unter Verbindung erneut ein — ein Backup enthält es nie.</string>
+    <string name="backup_error_export">Das Backup konnte nicht erstellt werden.</string>
+    <string name="backup_error_not_a_backup">Diese Datei ist kein MateDroid-Backup.</string>
+    <string name="backup_error_too_new">Dieses Backup braucht ein neueres MateDroid. Aktualisiere die App und versuche es erneut.</string>
+    <string name="backup_error_restore">Etwas ist schiefgegangen. Ein Teil wurde möglicherweise schon zurückgeholt.</string>
+
+    <string name="backup_cars_header">Autos</string>
+    <string name="backup_cars_hint">Nur die angehakten Autos kommen mit.</string>
+    <string name="backup_car_unnamed">Auto %1$d</string>
+    <string name="backup_car_no_vin">Keine VIN hinterlegt</string>
+
+    <string name="backup_restore_entry_title">Backup zurückholen</string>
+    <string name="backup_restore_entry_hint">Trips, Sentry-Warnungen und Einstellungen von einem anderen Telefon.</string>
+    <string name="backup_onboarding_intro">Wähle die Datei deines alten Telefons. Sie holt alles zurück außer dem API-Token.</string>
+
+    <string name="sync_notification_starting">Wird gestartet…</string>
+    <string name="sync_notification_car">Auto %1$d von %2$d</string>
+    <string name="sync_notification_summaries">Liste der Fahrten und Ladevorgänge wird geholt</string>
+    <string name="sync_notification_drives">Fahrten: %1$d von %2$d</string>
+    <string name="sync_notification_charges">Ladevorgänge: %1$d von %2$d</string>
+
+    <string name="trips_awaiting_title">Warten auf die Fahrten</string>
+    <string name="trips_awaiting_body">Deine Trips sind da, aber die Fahrten, aus denen sie bestehen, werden noch geladen. Sie erscheinen nach und nach, während die Synchronisierung läuft.</string>
 </resources>

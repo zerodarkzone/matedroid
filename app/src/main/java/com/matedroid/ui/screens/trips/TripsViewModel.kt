@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import com.matedroid.util.parseIsoDate
+import com.matedroid.ui.screens.charges.ChargeStatsCalculator
 import java.time.LocalDate
 import javax.inject.Inject
 
@@ -33,6 +34,8 @@ data class TripsUiState(
     val customEndDate: LocalDate? = null,
     val units: Units? = null,
     val dcChargeIds: Set<Int> = emptySet(),
+    /** Saved trips that exist but cannot be drawn yet, their drives not having synced. */
+    val tripsAwaitingDrives: Int = 0,
     val showShortDrivesCharges: Boolean = false
 )
 
@@ -63,7 +66,9 @@ class TripsViewModel @Inject constructor(
     private fun loadDcChargeIds(id: Int) {
         viewModelScope.launch {
             val ids = try {
-                aggregateDao.getDcChargeIds(id).toSet()
+                aggregateDao.getDcChargeIdsWithFallback(
+                    id, ChargeStatsCalculator.DC_AVG_POWER_THRESHOLD_KW
+                ).toSet()
             } catch (e: Exception) { emptySet() }
             _uiState.update { it.copy(dcChargeIds = ids) }
         }
@@ -128,7 +133,17 @@ class TripsViewModel @Inject constructor(
                 .distinct()
                 .sortedDescending()
 
-            _uiState.update { it.copy(isLoading = false, availableYears = years) }
+            // Nothing built, yet trips are on file: their drives have not synced. The list
+            // says so instead of explaining what makes a trip, which reads as "you have none".
+            val awaiting = if (allTrips.isEmpty()) tripRepository.savedTripCount(carId) else 0
+
+            _uiState.update {
+                it.copy(
+                    isLoading = false,
+                    availableYears = years,
+                    tripsAwaitingDrives = awaiting
+                )
+            }
             applyFilter()
         }
     }

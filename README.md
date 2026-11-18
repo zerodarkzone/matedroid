@@ -26,6 +26,7 @@ A native Android application for viewing Tesla vehicle data from your self-hoste
 - **Car color based themes** - Light/dark themes with palette based on the car color
 - **Multi-language** - Available in English, Italian, Spanish, Catalan, German, and Chinese (Simplified)
 - **Demo mode** - Try the whole app on a year of sample data before setting up Teslamate
+- **Backup & restore** - Save everything that only lives on your phone — the trips you merged yourself, the sentry alerts and your settings — into one file, and share it wherever you like. Put it back on any phone.
 
 ### Gallery
 
@@ -68,11 +69,11 @@ Yearly distance overview that you can drill down into: year → month → day �
 
 #### Stats for Nerds
 
-All your personal records in one place — longest drive, top speed, most efficient trip, longest streak, busiest day. Plus aggregated overviews of drives, charges, AC/DC ratio, and temperature stats. Filter by year or go all-time.
+A trophy room for your car. Three headline cards up top — top speed, most distance in a day, biggest charge — then an engraved plaque with the driving and charging totals the dashboard doesn't already show, including how much of your energy came from AC and how much from DC. Every other personal record sits on a shelf for Drives, Battery, Weather & Altitude or Misc, two trophies to a row, each one a tap away from the drive, charge or day behind it. Filter by year or go all-time.
 
 #### Battery Health
 
-How your battery is holding up: current vs. original capacity, degradation percentage, range loss, and a degradation chart over time.
+How your battery is holding up, drawn as a battery cell: the outline is the pack when new, the fill is what is usable now with the estimated health printed into it, and the hatched sliver above is what was lost, with the lost percentage printed on it. The figures hang off the drawing on leader lines — capacity in kWh on one side, range at 100% on the other — with the rated efficiency below. A second card shows the readings right now: charge level and limit, whether the car is plugged in or charging, and the estimated, rated and ideal range.
 
 #### Software Updates
 
